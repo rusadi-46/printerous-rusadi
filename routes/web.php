@@ -6,6 +6,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,11 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('register', [RegisterController::class, 'create'])->name('register');
+Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
 	Route::resource('user', UserController::class);
